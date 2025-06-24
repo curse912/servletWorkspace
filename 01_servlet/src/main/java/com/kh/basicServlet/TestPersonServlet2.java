@@ -50,6 +50,8 @@ public class TestPersonServlet2 extends HttpServlet {
 		
 		//html작성을 jsp에게 위임
 		//매개변수로 요청을 위임할 jsp의 경로를 추가.	===>person 내부에 만든  jsp경로
+		// getRequestDispatcher("jsp의 주소 || 서블릿의 url 패턴(/first, /second/, life")
+		// 지정된 서블리승ㄹ 호출하여 요청처리를 위임하고, "최초 client가 요청했던 url에 변화가 없다."
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/person/testPerson.jsp");
 		dispatcher.forward(request, response);	//데이터 그대로 담아서 전송
 	}
