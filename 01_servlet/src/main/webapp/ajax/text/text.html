@@ -53,10 +53,48 @@ table img {
 					// - async : 서버와 통신시 비동기 처리방식 설정 여부(기본값 true)
 					// - crossDomain :  타 도메인 호출 가능 여부 설정 (기본값 false)
 					// - contextType : request의 데이터 인코딩 방식
-					// - processData : 서버로 보내느 값이 file형태의 값인 경우 설정하는 속성
-					
+					// - processData : 서버로 보내느 값이 file형태의 값인 경우 설정하는 속성					
 				});
 			})
+			
+			$('#btn2').click(function(){
+				$.ajax({
+					url :"/servlet/ajax/csv",
+					success : function(data){
+						
+						console.log(data);
+						//황제성,5,남자 \n
+						//쥴리아 로버츠,15,여자 \n
+						//김고은,25,여자 \n
+						//다프트펑크,33,남자 \n
+						
+						const $table = $("<table></table>");
+						const persons = data.split("\n").slice(0,data.split("\n").length -1);
+						//\r
+						console.log(persons);
+						
+						$(persons).each(function(index,person){
+							const arr = person.split(",");
+							let tr = "<tr>";
+								tr +="<td>"+arr[0]+"</td>";
+								tr +='<td>${arr[1]}</td>';
+								tr +='<td>${arr[2]}</td>';
+								tr +="</tr>";
+							
+							$table.append(tr);
+						})
+						$(".container").append($table);
+						
+						
+					},
+					error : function(xhr,status,err){
+						consosle.log(xhr,status,err);
+					} 
+				});
+			});
+			
+			
+			
 		})
 	</script>
 	

@@ -40,10 +40,11 @@ public class JsAjaxServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
 		// content type을 지정안해주면 ??로 출력됨. 한글 한자같은 유니코드 기반의 문자는 다 깨짐
 		String userId = request.getParameter("id");
 		String name = request.getParameter("name");
+		
+		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("ajax post 요청 결과 : " + userId + ", " + name);
 		
